@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AI Knowledge Base — Search & Enrichment</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>AI Knowledge Base Search & Enrichment</h1>
+    <p class="subtitle">Upload documents, ask questions, and get structured AI answers with enrichment suggestions.</p>
+  </header>
+
+  <main>
+    <section class="card" id="uploadCard">
+      <h2>Upload Document</h2>
+      <input id="fileInput" type="file" accept=".pdf,.docx,.doc,.txt" />
+      <div class="row">
+        <button id="uploadBtn" class="primary">Upload</button>
+        <button id="countBtn">Document Count</button>
+        <button id="resetBtn" class="danger">Reset KB</button>
+      </div>
+      <div id="uploadStatus" class="status" aria-live="polite"></div>
+    </section>
+
+    <section class="card" id="searchCard">
+      <h2>Ask a Question</h2>
+      <textarea id="searchInput" rows="4" placeholder="Ask anything about the uploaded documents..."></textarea>
+      <div class="row small">
+        <label>Top K
+          <input id="topK" type="number" min="1" max="20" value="5" />
+        </label>
+        <label style="display: flex; align-items: center; gap: 4px;">
+          <input id="autoEnrich" type="checkbox" />
+          Auto-enrich
+        </label>
+        <button id="searchBtn" class="primary">Search</button>
+      </div>
+      <div id="searchStatus" class="status" aria-live="polite"></div>
+    </section>
+
+    <section class="card" id="resultsCard">
+    <h2>Results</h2>
+        <div id="resultsGrid">
+            <div id="answerArea" class="result-box"></div>
+            <div id="metaArea" class="result-box"></div>
+            <div id="sourcesArea" class="result-box"></div>
+            <div id="missingArea" class="result-box"></div>
+            <div id="enrichmentArea" class="result-box"></div>
+            <div id="rawJsonWrap" class="result-box">
+            <details>
+                <summary>Raw JSON</summary>
+                <pre id="rawJson" class="raw"></pre>
+            </details>
+            </div>
+        </div>
+</section>
+
+  </main>
+
+  <footer>
+    <small>Backend: <span id="backendStatus">unknown</span> — Frontend running statically</small>
+  </footer>
+
+  <script src="api.js" type="module"></script>
+  <script src="app.js" type="module"></script>
+</body>
+</html>
